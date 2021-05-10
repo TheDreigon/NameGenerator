@@ -2027,17 +2027,25 @@ public class NameGeneratorApplication {
 		out.println("Hello, I am a bot. What is your name?");
 		userName = scanner.nextLine();
 		out.println("Pleased to meet you, " + userName + "!");
-		out.println("I can choose a random male name for you. Would you like me to do it? \n y/n");
-		//(int) (Math.random() * 1000)
+		out.println("I can choose a random male or female name for you. Would you like me to do it? \n y/n");
 
 		while(true) {
 			switch (scanner.nextLine()) {
 				case "y":
-					out.println("You picked 'y'. \n Your random name is... \n " + boyNameList.get((int) (Math.random() * 1000)));
-					out.println("I can choose another random male name for you. Would you like me to do it again? \n y/n");
+					out.println("You picked 'y'. Would you like a male or a female name? m/f");
+					switch (scanner.nextLine()) {
+						case "m":
+							out.println("you picked 'm' Your random name is... \n " + boyNameList.get((int) (Math.random() * 1000)));
+							break;
+						case "f":
+							out.println("you picked 'f' Your random name is... \n " + girlNameList.get((int) (Math.random() * 1000)));
+							break;
+					}
+					out.println("I can choose another random name for you. Would you like me to do it again? \n y/n");
 					break;
 				case "n":
 					out.println("You picked the option 'n'. \n The app will now close.");
+					scanner.close();
 					exit(0);
 					break;
 				default:
@@ -2045,7 +2053,5 @@ public class NameGeneratorApplication {
 					break;
 			}
 		}
-
-		//scanner.close();
 	}
 }
